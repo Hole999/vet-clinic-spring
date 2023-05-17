@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Pet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"/>
+    <style>.navbar-pink {
+        background-color: #D99CCB !important;
+    }
+
+    .navbar-light .nav-link {
+        color: #fff !important;
+    }
+
+    .navbar-pink .navbar-brand {
+        color: white;
+    }
+
+    button.save-pet-btn {
+        background-color: #D99CCB;
+        color: white;
+        border-radius: 5px;
+        padding: 5px 10px;
+        text-decoration: none;
+    }
+
+    h1 {
+        color: #D99CCB;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-pink">
+    <a class="navbar-brand" href="/">PetClinic</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav navbar-light">
+            <li class="nav-item">
+                <a class="nav-link" href="/owners">Owners</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/pets">Pets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About us</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <h1>Edit Pet</h1>
+    <form method="post" th:object="${pet}" th:action="@{/pets/edit/{id}(id=${pet.id})}">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" th:field="*{name}" id="name"/>
+            <div class="validationError"
+                 th:if="${#fields.hasErrors('name')}"
+                 th:errors="*{name}">Name is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="text" class="form-control" th:field="*{age}" id="age"/>
+            <div class="validationError"
+                 th:if="${#fields.hasErrors('age')}"
+                 th:errors="*{age}">Age is required
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="type">Type:</label>
+            <input type="text" class="form-control" th:field="*{type}" id="type"/>
+            <div class="validationError"
+                 th:if="${#fields.hasErrors('type')}"
+                 th:errors="*{type}">Type is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="healthStatus">Health status:</label>
+            <input type="text" class="form-control" th:field="*{healthStatus}" id="healthStatus"/>
+            <div class="validationError"
+                 th:if="${#fields.hasErrors('healthStatus')}"
+                 th:errors="*{healthStatus}">Health status is required
+            </div>
+        </div>
+
+
+        <button type="submit" class="save-pet-btn">Save Pet</button>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>
